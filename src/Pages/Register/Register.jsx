@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
-import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
   useTitle("Register");
 
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -15,7 +21,30 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     const confirm = form.confirm.value;
-    console.log(name, email, password, confirm);
+    const photo = form.photo.value;
+    console.log(name, email, password, confirm, photo);
+
+    if (password.length >= 6) {
+      if (password === confirm) {
+        createUser(email, password)
+          .then((result) => {
+            const user = result.user;
+            console.log(user);
+            form.reset();
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            setError(error.message);
+          });
+      } else {
+        setError("Password and confirm password do not match!");
+        return;
+      }
+    } else {
+      setError("Password must be at least 6 characters long!");
+      return;
+    }
   };
 
   return (
@@ -45,7 +74,7 @@ const Register = () => {
 
                 <div className="form-control mb-4">
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="email"
                     className="input input-sm input-bordered"
@@ -58,7 +87,7 @@ const Register = () => {
                     <input
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      placeholder="Password"
+                      placeholder="Password must be 6 characters long"
                       className="input input-sm input-bordered pr-10 w-full"
                       required
                     />
@@ -103,7 +132,6 @@ const Register = () => {
                     name="photo"
                     placeholder="Photo URL"
                     className="input input-sm input-bordered"
-                    required
                   />
                 </div>
 
@@ -115,6 +143,10 @@ const Register = () => {
                   />
                 </div>
               </form>
+
+              <p className="text-center text-red-600 font-bold">{error}</p>
+
+              <SocialLogin></SocialLogin>
 
               <p className="text-center my-4">
                 Already have an account?{" "}

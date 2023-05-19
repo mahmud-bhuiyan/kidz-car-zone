@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   useTitle("Login");
@@ -58,6 +59,9 @@ const Login = () => {
                   />
                 </div>
               </form>
+
+              <SocialLogin></SocialLogin>
+
               <p className="text-center my-4">
                 New to KidzCarZone?{" "}
                 <Link to="/register" className="text-orange-600 font-bold">
