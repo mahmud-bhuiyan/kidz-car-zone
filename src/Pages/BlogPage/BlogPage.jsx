@@ -1,4 +1,7 @@
+import useTitle from "../../Hooks/useTitle";
+
 const BlogPage = () => {
+  useTitle("Blog");
   return (
     <div className="my-8">
       <div className="font-bold text-center">

@@ -1,7 +1,9 @@
 import { Link, useRouteError } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 
 const ErrorPage = () => {
   const { status } = useRouteError();
+  useTitle("Error");
   return (
     <>
       <div
