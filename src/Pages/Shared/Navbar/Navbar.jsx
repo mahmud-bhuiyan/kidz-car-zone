@@ -92,10 +92,20 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <FaUserCircle
-              className="mt-2"
-              style={{ fontSize: "1.8rem" }}
-            ></FaUserCircle>
+            {user ? (
+              <Link className="mt-1" to="/" title={user.displayName}>
+                <img
+                  src={user?.photoURL}
+                  alt={user?.email}
+                  style={{ width: "40px", borderRadius: "50%" }}
+                />
+              </Link>
+            ) : (
+              <FaUserCircle
+                className="mt-2"
+                style={{ fontSize: "1.8rem" }}
+              ></FaUserCircle>
+            )}
             <div className="w-8 rounded-full"></div>
           </label>
         </div>
