@@ -1,16 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useTitle from "../../Hooks/useTitle";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
   useTitle("Login");
+  const { signIn } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage =
+          errorCode === "auth/wrong-password"
+            ? "Incorrect password"
+            : errorCode === "auth/user-not-found"
+            ? "No user found with this email"
+            : error.message;
+        console.log(errorMessage);
+        setError(errorMessage);
+      });
   };
   return (
     <>
@@ -59,6 +82,8 @@ const Login = () => {
                   />
                 </div>
               </form>
+
+              <p className="text-center text-red-600 font-bold">{error}</p>
 
               <SocialLogin></SocialLogin>
 
