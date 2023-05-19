@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <footer className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10 bg-base-200 text-base-content gap-4">
+      <footer className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10 bg-base-300 text-base-content gap-4 rounded-t-lg">
         <div className="md:col-span-2 md:mr-4">
           <div className="md:ml-28">
             <div className="flex mb-4 items-center">
@@ -80,7 +80,8 @@ const Footer = () => {
           </a>
         </div>
       </footer>
-      <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">
+      <hr />
+      <footer className="footer px-10 py-4 border-t bg-base-300 text-base-content border-base-300">
         <div className="mx-auto text-center">
           <span>
             &copy; {new Date().getFullYear()} KidzCarZone. All rights reserved.

@@ -13,14 +13,18 @@ const Login = () => {
   };
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row">
           <div className="w-1/2 mr-12">
-            <img src="https://i.ibb.co/2MHfVJF/login.png" alt="" />
+            <img
+              src="https://i.ibb.co/2MHfVJF/login.png"
+              style={{ width: "400px" }}
+              alt=""
+            />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
-              <h1 className="text-5xl font-bold text-center mb-10">Login</h1>
+              <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
               <form onSubmit={handleLogin}>
                 <div className="form-control">
                   <label className="label">
@@ -30,7 +34,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     placeholder="email"
-                    className="input input-bordered"
+                    className="input input-sm input-bordered"
                     required
                   />
                 </div>
@@ -42,13 +46,13 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="password"
-                    className="input input-bordered"
+                    className="input input-sm input-bordered"
                     required
                   />
                 </div>
                 <div className="form-control mt-6">
                   <input
-                    className="btn btn-primary"
+                    className="btn btn-sm btn-primary"
                     type="submit"
                     value="Login"
                   />

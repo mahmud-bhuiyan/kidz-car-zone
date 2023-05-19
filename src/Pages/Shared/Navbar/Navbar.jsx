@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const navItems = (
     <>
@@ -19,7 +19,7 @@ const Navbar = () => {
         <Link to="/blog">Blog</Link>
       </li>
       <li>
-        <Link to="/register">Sign Up</Link>
+        <Link to="/register">Register</Link>
       </li>
       <li>
         <Link to="/login">Login</Link>
@@ -28,7 +28,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100 h-28">
+      <div className="navbar bg-base-300 rounded-b-lg">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -57,7 +57,7 @@ const Navbar = () => {
 
           <Link to="/" className="flex items-center">
             <img
-              className="h-12 w-12 mr-4 rounded"
+              className="h-8 w-8 mr-2 rounded"
               src="https://i.ibb.co/zbHzfxB/kcz-svg.jpg"
               alt="KidzCarZone Logo"
             />
@@ -69,9 +69,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="" />
-            </div>
+            <FaUserCircle
+              className="mt-2"
+              style={{ fontSize: "1.8rem" }}
+            ></FaUserCircle>
+            <div className="w-8 rounded-full"></div>
           </label>
         </div>
       </div>
