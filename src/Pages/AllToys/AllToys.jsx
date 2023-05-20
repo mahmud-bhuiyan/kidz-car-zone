@@ -1,9 +1,21 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import "daisyui/dist/full.css";
 import "./AllToys.css";
+import AllToysRow from "./AllToysRow";
 
 const AllToys = () => {
   const allToys = useLoaderData();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filterToys = () => {
+    if (searchQuery) {
+      return allToys.filter((toy) =>
+        toy.toyName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    return allToys;
+  };
 
   return (
     <div className="mt-4 mb-8 text-center">
@@ -26,6 +38,23 @@ const AllToys = () => {
       </div>
       <div className="rounded-lg shadow-lg p-6 my-8">
         <div className="overflow-x-auto">
+          <div className="mb-4 md:flex align-middle justify-center">
+            <label
+              htmlFor="searchInput"
+              className="block text-lg font-medium mr-3 pt-2"
+            >
+              Search Toy By Name:
+            </label>
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Enter toy name..."
+              className="px-4 py-2 rounded-lg border border-gray-300"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+
           <table className="table table-zebra w-full table-bordered rounded-lg text-center">
             <thead>
               <tr>
@@ -39,21 +68,15 @@ const AllToys = () => {
               </tr>
             </thead>
             <tbody>
-              {allToys.slice(0, 20).map((toy, index) => (
-                <tr key={toy._id}>
-                  <td className="px-4 py-2">{index + 1}</td>
-                  <td className="px-4 py-2">{toy.sellerName}</td>
-                  <td className="px-4 py-2">{toy.toyName}</td>
-                  <td className="px-4 py-2">{toy.subCategory}</td>
-                  <td className="px-4 py-2">{toy.price}</td>
-                  <td className="px-4 py-2">{toy.availableQuantity}</td>
-                  <td className="px-4 py-2">
-                    <button className="btn btn-sm btn-primary">
-                      View Details
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {filterToys()
+                .slice(0, 20)
+                .map((toy, index) => (
+                  <AllToysRow
+                    key={toy._id}
+                    index={index}
+                    toy={toy}
+                  ></AllToysRow>
+                ))}
             </tbody>
           </table>
         </div>
