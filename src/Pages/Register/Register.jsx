@@ -4,6 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   useTitle("Register");
@@ -22,16 +23,26 @@ const Register = () => {
     const password = form.password.value;
     const confirm = form.confirm.value;
     const photo = form.photo.value;
-    console.log(name, email, password, confirm, photo);
 
     if (password.length >= 6) {
       if (password === confirm) {
         createUser(email, password)
           .then((result) => {
             const user = result.user;
-            console.log(user);
-            form.reset();
-            navigate("/");
+            updateProfile(user, {
+              displayName: name,
+              photoURL: photo,
+            })
+              .then(() => {
+                console.log(user);
+                form.reset();
+                navigate("/");
+                window.location.reload();
+              })
+              .catch((error) => {
+                console.log(error.message);
+                setError(error.message);
+              });
           })
           .catch((error) => {
             console.log(error.message);

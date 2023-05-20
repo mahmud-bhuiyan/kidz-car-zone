@@ -13,7 +13,7 @@ const Footer = () => {
     <>
       <footer className="footer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 p-10 bg-base-300 text-base-content gap-4 rounded-t-lg">
         <div className="md:col-span-2 md:mr-4">
-          <div className="md:ml-28">
+          <div className="lg:ml-28">
             <div className="flex mb-4 items-center">
               <img
                 className="h-12 w-12 mr-4 rounded"
