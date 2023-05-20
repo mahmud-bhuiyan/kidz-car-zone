@@ -12,31 +12,31 @@ const Gallery = () => {
   ];
 
   return (
-    <>
-      <div className="bg-gradient-to-br from-purple-600 to-indigo-400 p-6 rounded-xl my-14">
-        <div className="mb-6">
-          <h2 className="text-4xl text-center font-bold mt-2 mb-8 text-white">
-            Popular Products
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4 md:m-2 lg:m-0">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="card bg-base-100 shadow-xl mb-6 overflow-hidden relative"
-              >
-                <figure className="p-4">
-                  <img
-                    src={image}
-                    alt={`Image ${index + 1}`}
-                    className="rounded-xl w-full h-auto transition-transform duration-300 transform hover:scale-105"
-                  />
-                </figure>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="my-16">
+      <div className="text-center">
+        <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-4">
+          Popular Products
+        </h2>
+        <div className="w-1/2 md:w-1/3 h-1 mx-auto bg-gradient-to-r from-purple-700 to-indigo-300 mb-16"></div>
       </div>
-    </>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 m-4 md:m-2 lg:m-0">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="card bg-base-100 shadow-xl mb-4 overflow-hidden relative"
+          >
+            <figure className="p-4">
+              <img
+                src={image}
+                alt=""
+                className="rounded-xl w-full h-auto transition-transform duration-300 transform hover:scale-105"
+              />
+            </figure>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

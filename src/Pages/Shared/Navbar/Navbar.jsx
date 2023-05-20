@@ -33,7 +33,7 @@ const Navbar = () => {
             <Link to="/">My Toys</Link>
           </li>
           <li>
-            <Link to="/">Add A Toy</Link>
+            <Link to="/add/toy">Add A Toy</Link>
           </li>
           <li>
             <button onClick={handleLogout}>Logout</button>
