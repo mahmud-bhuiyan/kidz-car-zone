@@ -1,0 +1,25 @@
+.text-center {
+  text-align: center;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #efeff0;
+}
+
+.table-bordered th {
+  background-color: #428dd4;
+  color: white;
+  font-size: 18px;
+}
