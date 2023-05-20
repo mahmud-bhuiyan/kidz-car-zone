@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddToy = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const AddToy = () => {
     const availableQuantity = form.available_quantity.value;
     const detailDescription = form.detail_description.value;
 
-    console.log(
+    const newToy = {
       picture,
       toyName,
       sellerName,
@@ -26,8 +27,39 @@ const AddToy = () => {
       price,
       rating,
       availableQuantity,
-      detailDescription
-    );
+      detailDescription,
+    };
+    console.log(newToy);
+
+    fetch("http://localhost:5000/toy", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newToy),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Toy added successfully!",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          form.reset();
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        Swal.fire({
+          title: "Error!",
+          text: "An error occurred",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
   };
 
   return (
@@ -53,24 +85,24 @@ const AddToy = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Picture URL</span>
-              </label>
-              <input
-                type="text"
-                name="picture"
-                placeholder="Picture URL"
-                className="input input-sm input-bordered"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
                 <span className="label-text">Toy Name</span>
               </label>
               <input
                 type="text"
                 name="toy_name"
                 placeholder="Toy Name"
+                className="input input-sm input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Picture URL</span>
+              </label>
+              <input
+                type="text"
+                name="picture"
+                placeholder="Picture URL"
                 className="input input-sm input-bordered"
                 required
               />
