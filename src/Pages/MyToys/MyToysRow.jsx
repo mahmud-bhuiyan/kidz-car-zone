@@ -1,8 +1,9 @@
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from "react";
 
-const MyToysRow = ({ index, toy }) => {
+const MyToysRow = ({ index, toy, handleDelete }) => {
   const {
+    _id,
     availableQuantity,
     detailDescription,
     email,
@@ -58,7 +59,10 @@ const MyToysRow = ({ index, toy }) => {
         <button className="mr-2 px-3 py-2 bg-blue-600 rounded-lg text-white">
           <FaRegEdit />
         </button>
-        <button className="mr-2 px-3 py-2 bg-red-600 rounded-lg text-white">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="mr-2 px-3 py-2 bg-red-600 rounded-lg text-white"
+        >
           <FaRegTrashAlt />
         </button>
       </td>
