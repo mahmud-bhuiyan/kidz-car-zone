@@ -75,7 +75,9 @@ const AddToy = () => {
       >
         <div className="hero-content text-center text-neutral-content">
           <div className="max-w-md">
-            <h1 className="text-3xl md:text-5xl font-bold mt-10">Add a Toy</h1>
+            <h1 className="text-3xl md:text-5xl font-bold text-black bg-slate-200 px-4 pt-3 pb-5 rounded-lg mt-24">
+              Add a Toy
+            </h1>
           </div>
         </div>
       </div>
