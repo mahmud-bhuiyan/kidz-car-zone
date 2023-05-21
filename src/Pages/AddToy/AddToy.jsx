@@ -11,7 +11,7 @@ const AddToy = () => {
     const picture = form.picture.value;
     const toyName = form.toy_name.value;
     const sellerName = form.seller_name.value;
-    const sellerEmail = form.seller_email.value;
+    const email = form.email.value;
     const subCategory = form.sub_category.value;
     const price = form.price.value;
     const rating = form.rating.value;
@@ -22,7 +22,7 @@ const AddToy = () => {
       picture,
       toyName,
       sellerName,
-      sellerEmail,
+      email,
       subCategory,
       price,
       rating,
@@ -126,7 +126,7 @@ const AddToy = () => {
               </label>
               <input
                 type="email"
-                name="seller_email"
+                name="email"
                 defaultValue={user?.email}
                 placeholder="Seller Email"
                 className="input input-sm input-bordered"
