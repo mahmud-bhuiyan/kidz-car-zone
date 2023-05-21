@@ -6,6 +6,7 @@ import ShopByCategory from "../ShopByCategory/ShopByCategory";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ContactUs from "../ContactUs/ContactUs ";
+import UserReview from "../UserReview/UserReview";
 
 const Home = () => {
   useTitle("Home");
@@ -30,6 +31,10 @@ const Home = () => {
 
       <div data-aos="fade-up">
         <ContactUs></ContactUs>
+      </div>
+
+      <div data-aos="fade-up">
+        <UserReview></UserReview>
       </div>
     </div>
   );
