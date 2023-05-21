@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [myToys, setMyToys] = useState();
+  const [sortOrder, setSortOrder] = useState("ascending");
+  const [sortedToys, setSortedToys] = useState([]);
 
   const url = `http://localhost:5000/myToys?email=${user.email}`;
 
@@ -19,6 +21,22 @@ const MyToys = () => {
         console.log(error.message);
       });
   }, [url]);
+
+  useEffect(() => {
+    if (myToys) {
+      sortToys(sortOrder);
+    }
+  }, [myToys, sortOrder]);
+
+  const sortToys = (order) => {
+    if (order === "ascending") {
+      const sortedAscending = [...myToys].sort((a, b) => a.price - b.price);
+      setSortedToys(sortedAscending);
+    } else if (order === "descending") {
+      const sortedDescending = [...myToys].sort((a, b) => b.price - a.price);
+      setSortedToys(sortedDescending);
+    }
+  };
 
   const handleDelete = (_id) => {
     console.log(_id);
@@ -42,6 +60,7 @@ const MyToys = () => {
               Swal.fire("Deleted!", "Your toy has been deleted.", "success");
               const remaining = myToys.filter((toy) => toy._id !== _id);
               setMyToys(remaining);
+              sortToys(sortOrder);
             }
           })
           .catch((error) => {
@@ -49,6 +68,12 @@ const MyToys = () => {
           });
       }
     });
+  };
+
+  const handleSort = () => {
+    const newSortOrder = sortOrder === "ascending" ? "descending" : "ascending";
+    setSortOrder(newSortOrder);
+    sortToys(newSortOrder);
   };
 
   return (
@@ -72,6 +97,15 @@ const MyToys = () => {
       </div>
       <div className="rounded-lg shadow-lg p-6 my-8">
         <div className="overflow-x-auto w-full">
+          <div className="flex justify-end mb-4">
+            <button
+              className="px-4 py-2 bg-gray-800 text-white rounded-md"
+              onClick={handleSort}
+            >
+              Sort by price{" "}
+              {sortOrder === "ascending" ? "Ascending" : "Descending"}
+            </button>
+          </div>
           <table className="table table-zebra w-full table-bordered rounded-lg text-center">
             <thead>
               <tr>
@@ -86,7 +120,7 @@ const MyToys = () => {
               </tr>
             </thead>
             <tbody>
-              {myToys?.map((toy, index) => (
+              {sortedToys?.map((toy, index) => (
                 <MyToysRow
                   key={toy._id}
                   index={index}
