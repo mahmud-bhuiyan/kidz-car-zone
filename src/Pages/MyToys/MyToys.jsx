@@ -9,7 +9,7 @@ const MyToys = () => {
   const [sortOrder, setSortOrder] = useState("ascending");
   const [sortedToys, setSortedToys] = useState([]);
 
-  const url = `http://localhost:5000/myToys?email=${user.email}`;
+  const url = `https://kidz-car-server.vercel.app/myToys?email=${user.email}`;
 
   useEffect(() => {
     fetch(url)
@@ -50,7 +50,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myToys/${_id}`, {
+        fetch(`https://kidz-car-server.vercel.app/myToys/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
