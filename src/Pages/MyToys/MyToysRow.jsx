@@ -1,5 +1,6 @@
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyToysRow = ({ index, toy, handleDelete }) => {
   const {
@@ -56,9 +57,12 @@ const MyToysRow = ({ index, toy, handleDelete }) => {
         )}
       </td>
       <td>
-        <button className="mr-2 px-3 py-2 bg-blue-600 rounded-lg text-white">
-          <FaRegEdit />
-        </button>
+        <Link to={`/updateToy/${_id}`}>
+          <button className="mr-2 px-3 py-2 bg-blue-600 rounded-lg text-white">
+            <FaRegEdit />
+          </button>
+        </Link>
+
         <button
           onClick={() => handleDelete(_id)}
           className="mr-2 px-3 py-2 bg-red-600 rounded-lg text-white"
