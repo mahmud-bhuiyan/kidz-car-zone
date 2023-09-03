@@ -1,9 +1,5 @@
 ## Website Name: KidzCarZone
 
-## Client-side Git link: https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-client-side-mahmud-bhuiyan.git
-
-## Server-side Git link: https://github.com/programming-hero-web-course-4/b7a11-toy-marketplace-server-side-mahmud-bhuiyan.git
-
 ### Live website link: https://kidz-car-zone.web.app/
 
 ## Features
