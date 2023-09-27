@@ -22,9 +22,6 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/blog">Blog</Link>
-      </li>
-      <li>
         <Link to="/allToys">All Toys</Link>
       </li>
       {user?.email ? (

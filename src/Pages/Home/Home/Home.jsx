@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ContactUs from "../ContactUs/ContactUs ";
 import UserReview from "../UserReview/UserReview";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   useTitle("Home");
@@ -17,6 +18,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Kidz Car Zone</title>
+      </Helmet>
       <div data-aos="fade-up">
         <Banner></Banner>
       </div>

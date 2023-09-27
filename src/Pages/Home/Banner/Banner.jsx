@@ -33,7 +33,11 @@ const Banner = () => {
               index === currentSlide ? "active" : ""
             }`}
           >
-            <img src={image} className="w-full" alt={`Slide ${index + 1}`} />
+            <img
+              src={image}
+              className="w-full md:h-[700px]"
+              alt={`Slide ${index + 1}`}
+            />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a
                 href={`#slide${index === 0 ? images.length - 1 : index - 1}`}
